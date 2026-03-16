@@ -2,13 +2,16 @@ palavra = "rocket raccoon"
 palavra = palavra.upper()
 letras_acertadas = ["_", "_", "_", "_", "_", "_", "-", "_", "_", "_", "_", "_", "_", "_"]
 acertou = False
+enforcou = False
+limite_tentativas = len(palavra) + 6
+tentativa = 1
 
 def mostrar_letras_acertadas():
     for letra in letras_acertadas:
         print(letra, end=" ")
 
 print("Duvido você adivinhar a palavra secreta >:)")
-while(not acertou):
+while(not acertou and not enforcou):
     # mostar as letras acertadas
     mostrar_letras_acertadas()
 
@@ -20,7 +23,13 @@ while(not acertou):
             letras_acertadas[indice] = letra
         indice = indice + 1
 
+    if tentativa == limite_tentativas:
+        print("Você perdeu :( kkkkk\nA palavra era:", palavra)
+        enforcou = True
+
     if letras_acertadas.count("_") == 0:
         print("Parabéns!!! Você acertou a palavra :))")
         mostrar_letras_acertadas()
         acertou = True
+
+    tentativa = tentativa + 1
